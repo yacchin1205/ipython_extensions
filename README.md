@@ -1,60 +1,30 @@
-# Miscellaneous IPython extensions
-
-These extensions target IPython master, so may not always work on the latest stable release of IPython.
-
-You can install each extension individually, via copy, download, or symlink (below):
-
-    ln -s $(pwd)/extensions/* $(ipython locate)/extensions
-    ln -s $(pwd)/nbextensions/* $(ipython locate)/nbextensions
-
-or you can link the extension directories into your IPython directories (what I do):
-
-    ln -s $(pwd)/extensions $(ipython locate)/extensions
-    ln -s $(pwd)/nbextensions $(ipython locate)/nbextensions
-
-## Gist
-
-Add a gist button to the notebook toolbar:
-
-    $ curl -L https://rawgithub.com/minrk/ipython_extensions/master/nbextensions/gist.js > $(ipython locate)/nbextensions/gist.js
-
-and load it by adding to your custom.js, found in `$(ipython locate profile)/static/custom/custom.js`:
-
-```javascript
-$([IPython.events]).on("app_initialized.NotebookApp", function () {
-    IPython.load_extensions("gist");
-});
-```
-
-
-
-## Table of Contents 
+# Table of Contents extension for Jupyter
 
 Generates floating table of contents inside your notebook from the heading cells.
 Adds a button to the toolbar to toggle the floating table of contents.
 
-install the extension:
+You can install this extension as Python Packages. The details are shown in [Distributing Jupyter Extensions as Python Packages](https://jupyter-notebook.readthedocs.org/en/stable/examples/Notebook/rstversions/Distributing%20Jupyter%20Extensions%20as%20Python%20Packages.html).
 
-    $ curl -L https://rawgithub.com/minrk/ipython_extensions/master/nbextensions/toc.js > $(ipython locate)/nbextensions/toc.js
-    $ curl -L https://rawgithub.com/minrk/ipython_extensions/master/nbextensions/toc.css > $(ipython locate)/nbextensions/toc.css
+# How to install
 
-and load it with this in your custom.js:
+## Install the python package
 
-```javascript
-$([IPython.events]).on("app_initialized.NotebookApp", function () {
-    IPython.load_extensions("toc");
-});
+The package have not been uploaded to PyPI yet, so you should clone this repository and install it using setuptools
+
+```
+$ git clone https://github.com/yacchin1205/ipython_extensions.git
+$ cd ipython_extensions
+$ python3 setup.py sdist
+$ pip3 install dist/nbextension_toc-0.1.tar.gz
 ```
 
-## Write and execute
+## Install and Enable the extension in the package
 
-This IPython Notebook magic writes the content of the cell to a specified .py file before executing it.
-An identifier can be used when writing to the file, thus making it possible to overwrite previous iterations of the same code block. 
-The use case for this extension is to export selected code from a Notebook for reuse through a .py file.
+You can install and enable the extension using `jupyter nbextension` command.
 
-To install the extension use:
+```
+$ jupyter nbextension install --py nbextension_toc
+$ jupyter nbextension enable --py nbextension_toc
+```
 
-    %install_ext https://raw.githubusercontent.com/minrk/ipython_extensions/master/extensions/writeandexecute.py
-Then load it with 
-
-    %load_ext writeandexecute
+After these commands, run `jupyter notebook` command. Then the ToC button is shown in tool bar.
