@@ -27,4 +27,4 @@ $ jupyter nbextension install --py nbextension_toc
 $ jupyter nbextension enable --py nbextension_toc
 ```
 
-After these commands, run `jupyter notebook` command. Then the *Table of Contents* button will appear in the tool bar.
+After these commands, run `jupyter notebook` command. Then the *Table of Contents* button will appear in the toolbar.
