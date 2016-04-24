@@ -2,7 +2,7 @@
 
 from setuptools import setup
 
-setup(name='ToC nbextension',
+setup(name='nbextension_toc',
       version='0.1',
       description='ToC extension for Jupyter Notebook',
       packages=['nbextension_toc'],
